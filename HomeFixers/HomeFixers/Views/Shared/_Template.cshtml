@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home Fixers</title>
+    <meta charset="utf-8">
+    <link href="@Url.Content("~/Content/reset.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/style.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/layout.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/jquery-1.6.3.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/cufon-yui.js")"></script>
+    <script src="@Url.Content("~/Scripts/cufon-replace.js")"></script>
+    <script src="@Url.Content("~/Scripts/NewsGoth_BT_400.font.js")"></script>
+    <script src="@Url.Content("~/Scripts/FF-cash.js)")"></script>
+    <script src="@Url.Content("~/Scripts/script.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.equalheights.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.easing.1.3.js")"></script>
+    <script src="@Url.Content("~/Scripts/tms-0.3.js")"></script>
+    <script src="@Url.Content("~/Scripts/tms_presets.js")"></script>
+    <script src="@Url.Content("~/Scripts/easyTooltip.js")"></script>
+</head>
+<body id="page1">
+    <div class="extra">
+        <div class="main">
+            <!--==============================header=================================-->
+            <header>
+                <div class="indent">
+                    <div class="row-top">
+                        <div class="wrapper">
+                            <h1><a href="">HomeFixers</a></h1>
+                            <strong class="support">+1 513-510-9537</strong>
+                        </div>
+                    </div>
+                    <nav>
+                        <ul class="menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            @using Microsoft.AspNet.Identity
+                                                        @if (Request.IsAuthenticated)
+                                                        {
+                                                            if (User.IsInRole("Provider"))
+                                                            {
+                                                                <li>@Html.ActionLink("Hello " + User.Identity.GetUserName() + "! Create smiles today", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+<li>@Html.ActionLink("My Account", "Index", "ServiceProviders")</li>}
+                                else
+                                {
+                                    <li>@Html.ActionLink("My Account", "Index", "Customers")</li>
+                                    <li>@Html.ActionLink("My Transactions", "Index", "Transactions")</li>
+                                    <li>@Html.ActionLink("Book a service", "SearchSchedule", "ServiceProviders")</li>
+                                }
+                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                }
+                            }
+                            else
+                            {
+
+                                <li>@Html.ActionLink("Services", "About", "Home")</li>
+                                <li>@Html.ActionLink("User Registration", "Register", "Account", new { role = "Customer" }, htmlAttributes: new { id = "registerLink" })</li>
+                                        <li>@Html.ActionLink("Fixers Registration", "Register", "Account", new { role = "Provider" }, htmlAttributes: new { id = "registerLink" })</li>
+                                        <li>@Html.ActionLink("Log in.", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                            }
+
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <div class="block"></div>
+        </div>
+    </div>
+    <!--==============================footer=================================-->
+    <footer>
+        <div class="main">
+            <div class="footer-bg">
+                <p class="prev-indent-bot">Copyright &copy; <a href="#">Home Fixers</a> All Rights Reserved </p>
+            </div>
+        </div>
+    </footer>
+    <script>Cufon.now();</script>
+    <script>
+$(window).load(function () {
+    $('.slider')._TMS({
+        duration: 800,
+        easing: 'easeOutQuart',
+        preset: 'simpleFade',
+        slideshow: 7000,
+        banners: false,
+        pauseOnHover: true,
+        waitBannerAnimation: false,
+        prevBu: '.prev',
+        nextBu: '.next'
+    });
+});
+    </script>
+</body>
+</html>
